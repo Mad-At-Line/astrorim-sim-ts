@@ -1,0 +1,5 @@
+# Versions used to generate tests/golden/ (see tests/golden/manifest.json).
+numpy==2.4.6
+scipy==1.17.1
+astropy==8.0.1
+lenstronomy==1.14.2

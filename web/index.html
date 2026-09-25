@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AstroRIM Lens Simulator</title>
+    <meta name="description" content="Interactive strong gravitational lens simulator: a TypeScript port of AstroRIM's simgenv2, verified against the Python original." />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <h1>AstroRIM lens simulator</h1>
+        <p class="lede">
+          A TypeScript port of the <code>simgenv2</code> strong-lens simulator used to train AstroRIM, running entirely in
+          your browser. Each stage of the pipeline is tested against the original Python code.
+        </p>
+      </div>
+      <a id="repo-link" class="repo-link" hidden>Source and verification</a>
+    </header>
+
+    <main class="layout">
+      <aside class="controls" aria-label="Simulation controls">
+        <section class="group">
+          <h2>Lens system</h2>
+          <div class="seed-row">
+            <label for="seed">Seed</label>
+            <input id="seed" type="number" min="0" step="1" value="1" />
+            <button id="new-lens" class="primary" type="button">New random lens</button>
+          </div>
+          <p id="lens-origin" class="note"></p>
+        </section>
+
+        <section class="group" id="sliders"></section>
+
+        <section class="group">
+          <h2>Components</h2>
+          <label class="toggle"><input id="t-nfw" type="checkbox" checked /> NFW group halo</label>
+          <label class="toggle"><input id="t-sub" type="checkbox" checked /> SIS subhalos</label>
+          <label class="toggle"><input id="t-noise" type="checkbox" checked /> Detector noise</label>
+        </section>
+
+        <section class="group">
+          <h2>Display</h2>
+          <label for="stretch">Stretch</label>
+          <select id="stretch">
+            <option value="asinh" selected>asinh</option>
+            <option value="linear">linear</option>
+            <option value="log">log</option>
+          </select>
+          <div class="button-row">
+            <button id="download" type="button">Download FITS</button>
+            <button id="copy-params" type="button">Copy params JSON</button>
+          </div>
+          <p id="status" class="note" role="status" aria-live="polite"></p>
+        </section>
+      </aside>
+
+      <section class="results">
+        <div class="panels">
+          <figure class="panel">
+            <canvas id="c-GT" width="96" height="96" aria-label="Unlensed source"></canvas>
+            <figcaption><strong>Source</strong> <span>unlensed, GT</span></figcaption>
+          </figure>
+          <figure class="panel">
+            <canvas id="c-srcDet" width="96" height="96" aria-label="Lensed source"></canvas>
+            <figcaption><strong>Lensed source</strong> <span>PSF, no lens light</span></figcaption>
+          </figure>
+          <figure class="panel">
+            <canvas id="c-noiseless" width="96" height="96" aria-label="Noiseless observation"></canvas>
+            <figcaption><strong>Observation</strong> <span>noiseless</span></figcaption>
+          </figure>
+          <figure class="panel">
+            <canvas id="c-LENSED" width="96" height="96" aria-label="Observed image with noise"></canvas>
+            <figcaption><strong>Observed</strong> <span>LENSED, with noise</span></figcaption>
+          </figure>
+        </div>
+        <div class="colorbar-row">
+          <span>faint</span><canvas id="colorbar" width="256" height="1" aria-hidden="true"></canvas><span>bright</span>
+        </div>
+
+        <div class="cards">
+          <section class="card">
+            <h2>Truth labels <span class="sub">written to the FITS header, model convention</span></h2>
+            <table class="truth">
+              <thead>
+                <tr><th scope="col">Key</th><th scope="col" class="desc">Parameter</th><th scope="col" class="num">Value</th><th scope="col">Supervised</th></tr>
+              </thead>
+              <tbody id="truth-body"></tbody>
+            </table>
+            <p id="clean-flag" class="note"></p>
+          </section>
+          <section class="card">
+            <h2>Run details</h2>
+            <dl id="details" class="details"></dl>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      Physics: lenstronomy SIE, shear, NFW and SIS deflections; elliptical Sérsic light; Planck15 cosmology. Ported from
+      AstroRIM's <code>simgenv2.py</code> and <code>simgen_truth.py</code>.
+    </footer>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

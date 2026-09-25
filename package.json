@@ -1,0 +1,29 @@
+{
+  "name": "astrorim-sim-ts",
+  "version": "0.1.0",
+  "description": "TypeScript port of the AstroRIM simgenv2 strong-lens simulator, verified against the Python original.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:single": "vite build --mode single",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate": "tsx cli/generate.ts",
+    "mutation-check": "node scripts/mutation-check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^3.2.7"
+  }
+}

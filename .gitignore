@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-single/
+sims_ts/
+*.fits
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
