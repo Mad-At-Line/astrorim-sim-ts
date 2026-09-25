@@ -6,7 +6,7 @@ import { handle } from "./engine";
 import SimWorker from "./worker?worker&inline";
 
 /** Set this to your GitHub repository URL after publishing to show a link in the header. */
-const REPO_URL = "";
+const REPO_URL = "https://mad-at-line.github.io/astrorim-sim-ts/";
 
 const DEG = Math.PI / 180;
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
