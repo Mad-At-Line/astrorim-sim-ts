@@ -6,7 +6,7 @@ FITS generator. Every stage is checked against the original Python code.
 
 ![Demo screenshot](docs/screenshot.png)
 
-**Live demo:** [_Live Demo_](https://mad-at-line.github.io/astrorim-sim-ts/)
+**Live demo:** [_Click Me!_](https://mad-at-line.github.io/astrorim-sim-ts/)
 
 ## What it does
 
